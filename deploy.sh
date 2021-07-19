@@ -26,7 +26,7 @@ DOCKER_REGISTRY_URL="https://${ACR_LOGIN_SERVER}"
 ACR_ID=$(az deployment group show --resource-group $RG_NAME --name acrDeployment --query properties.outputs.acrId.value --output tsv | tr -d '\r')
 ACR_LOGIN_SERVER=$(az deployment group show --resource-group $RG_NAME --name acrDeployment --query properties.outputs.acrLoginServer.value --output tsv | tr -d '\r')
 ACR_NAME=$(az deployment group show --resource-group $RG_NAME --name acrDeployment --query properties.outputs.acrName.value --output tsv | tr -d '\r')
-ACR_PASSWORD=$(az deployment group show --resource-group $RG_NAME --name acrDeployment --query properties.outputs.acrPassword.value -o tsv)
+ACR_PASSWORD=$(az deployment group show --resource-group $RG_NAME --name acrDeployment --query properties.outputs.acrPassword.value -o tsv | tr -d '\r')
 
 # upload container
 docker login --username $ACR_NAME $ACR_LOGIN_SERVER --password $ACR_PASSWORD 
